@@ -74,11 +74,21 @@ jobs:
   staging-deploy:
     machine: true
     steps:
-      - git fetch --unshallow
-      - heroku maintenance:on --app ah-myflix-staging
-      - git push git@heroku.com:ah-myflix-staging.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run rake db:migrate --app ah-myflix-staging
-      - heroku maintenance:off --app ah-myflix-staging
+      - checkout
+      - run:
+          name: Run setup script
+          command: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "b0:01:cb:56:32:7d:3c:58:5c:11:c3:c3:f3:0b:1d:35"
+      - run:
+        name: Deploy Staging to Heroku
+        command: |
+          git fetch --unshallow
+          heroku maintenance:on --app ah-myflix-staging
+          git push git@heroku.com:ah-myflix-staging.git $CIRCLE_SHA1:refs/heads/master
+          heroku run rake db:migrate --app ah-myflix-staging
+          heroku maintenance:off --app ah-myflix-staging
 
 workflows:
   version: 2
