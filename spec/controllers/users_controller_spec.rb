@@ -16,6 +16,10 @@ describe UsersController do
         StripeWrapper::Charge.should_receive(:create).and_return(charge)
       end
 
+      after do
+        ActionMailer::Base.deliveries.clear
+      end
+
       it "creates the user" do
         post :create, user: Fabricate.attributes_for(:user)
         expect(User.count).to eq(1)
