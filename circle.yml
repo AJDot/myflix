@@ -19,3 +19,8 @@ deployment:
       - git push git@heroku.com:ah-myflix-staging.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app ah-myflix-staging
       - heroku maintenance:off --app ah-myflix-staging
+general:
+  branches:
+    only:
+      - master
+      - staging

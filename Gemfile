@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.2.9'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'bootstrap_form'
@@ -17,6 +17,8 @@ gem 'sentry-raven'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-aws'
+gem 'stripe'
+gem 'figaro'
 
 group :development do
   gem 'thin'
@@ -31,15 +33,18 @@ group :development, :test do
   gem 'rspec-rails', '2.99'
   gem 'fabrication'
   gem 'faker'
+  gem 'rspec_junit_formatter'
 end
 
 group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'shoulda-matchers', '2.7.0'
-  gem 'vcr', '2.9.3'
+  gem 'vcr'
   gem 'capybara'
   gem 'capybara-email'
   gem 'launchy'
+  gem 'webmock'
+  gem 'selenium-webdriver'
 end
 
 group :production, :staging do

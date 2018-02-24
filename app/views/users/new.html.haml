@@ -1,7 +1,13 @@
+= content_for :head do
+  %script(src="https://js.stripe.com/v3/");
+  :javascript
+    var stripe = Stripe("#{ENV['STRIPE_PUBLISHABLE_KEY']}");
+  = javascript_include_tag 'payments'
+
 %section.register.container
   .row
     .col-sm-10.col-sm-offset-1
-      = bootstrap_form_for @user, html: { class: 'form-horizontal' } do |f|
+      = bootstrap_form_for @user, html: { id: 'payment-form', class: 'form-horizontal' } do |f|
         %header
           %h1 Register
         %fieldset
@@ -9,6 +15,20 @@
           = f.password_field :password
           = f.text_field :full_name, label: "Full Name"
           = hidden_field_tag :invitation_token, @invitation_token
+        %fieldset.credit_card
+          %span#card-errors.alert-danger
+          .form-group
+            %label.col-sm-3(for="card-number") Credit Card Number
+            .col-sm-6
+              #card-number.form-control
+          .form-group
+            %label.col-sm-3(for="card-expiry") Expiration Date
+            .col-sm-6
+              #card-expiry.form-control
+          .form-group
+            %label.col-sm-3(for="card-cvc") Security Code
+            .col-sm-6
+              #card-cvc.form-control
         %fieldset.actions.control-group.col-sm-offset-2
           .controls
-            %input(type="submit" value="Sign Up" class="btn btn-default")
+            = submit_tag "Sign Up", class: "btn payment_submit"

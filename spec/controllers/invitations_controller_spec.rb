@@ -18,8 +18,9 @@ describe InvitationsController do
       let(:action) { post :create }
     end
 
+    after { ActionMailer::Base.deliveries.clear }
+
     context "with valid input" do
-      after { ActionMailer::Base.deliveries.clear }
 
       it "redirects to the invitation new page" do
         set_current_user
