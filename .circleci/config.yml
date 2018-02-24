@@ -67,7 +67,7 @@ jobs:
       - git fetch --unshallow
       - heroku maintenance:on --app ah-myflix
       - heroku pg:backups capture --app ah-myflix
-      - git push git@heroku.com:ah-myflix.git $CIRCLE_SHA1:refs/heads/master
+      - git push git@heroku.com:ah-myflix.git HEAD:refs/heads/master
       - heroku run rake db:migrate --app ah-myflix
       - heroku maintenance:off --app ah-myflix
 
@@ -84,7 +84,7 @@ jobs:
       - run:
           name: Deploy Staging to Heroku
           command: |
-            git fetch --unshallow
+            git fetch
             heroku maintenance:on --app ah-myflix-staging
             git push git@heroku.com:ah-myflix-staging.git $CIRCLE_SHA1:refs/heads/master
             heroku run rake db:migrate --app ah-myflix-staging
