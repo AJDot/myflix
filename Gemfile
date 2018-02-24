@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.2.9'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'bootstrap_form'
@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rspec-rails', '2.99'
   gem 'fabrication'
   gem 'faker'
+  gem 'rspec_junit_formatter'
 end
 
 group :test do

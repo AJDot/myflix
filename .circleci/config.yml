@@ -1,0 +1,99 @@
+version: 2
+jobs:
+  test-job:
+    docker:
+      - image: circleci/ruby:2.2.9-node-browsers
+        environment:
+          - RAILS_ENV: test
+          - PGHOST: 127.0.0.1
+          - PGUSER: root
+          - PGPASSWORD: ""
+
+      - image: circleci/postgres:9.6
+        environment:
+          - POSTGRES_USER: root
+          - POSTGRES_DB: myflix_test
+          - POSTGRES_PASSWORD: ""
+
+    working_directory: ~/myflix
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: mv config/database.ci.yml config/database.yml
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+  production-deploy:
+    machine: true
+    steps:
+      - git fetch --unshallow
+      - heroku maintenance:on --app ah-myflix
+      - heroku pg:backups capture --app ah-myflix
+      - git push git@heroku.com:ah-myflix.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app ah-myflix
+      - heroku maintenance:off --app ah-myflix
+
+  staging-deploy:
+    machine: true
+    steps:
+      - git fetch --unshallow
+      - heroku maintenance:on --app ah-myflix-staging
+      - git push git@heroku.com:ah-myflix-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app ah-myflix-staging
+      - heroku maintenance:off --app ah-myflix-staging
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test-job
+      - production-deploy:
+          requires:
+            - test-job
+          filters:
+            branches:
+              only: master
+      - staging-deploy:
+          requires:
+            - test-job
+          filters:
+            branches:
+              only: staging
