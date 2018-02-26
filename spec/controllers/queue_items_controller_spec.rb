@@ -116,6 +116,13 @@ describe QueueItemsController do
       let(:action) { post :update_queue, queue_items: [{id: 2, position: 3}, {id: 3, position: 2}] }
     end
 
+    it "redirects to the my queue page" do
+      alice = Fabricate(:user)
+      session[:user_id] = alice.id
+      post :update_queue
+      expect(response).to redirect_to my_queue_path
+    end
+
     context "with valid inputs" do
       let(:alice) { Fabricate(:user) }
       let(:video) { Fabricate(:video) }
