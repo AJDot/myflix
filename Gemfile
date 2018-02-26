@@ -20,6 +20,7 @@ gem 'mini_magick'
 gem 'carrierwave-aws'
 gem 'stripe'
 gem 'figaro'
+gem 'draper', '=2.0.0'
 
 group :development do
   gem 'thin'
