@@ -72,7 +72,7 @@ jobs:
           fingerprints:
             - "b0:01:cb:56:32:7d:3c:58:5c:11:c3:c3:f3:0b:1d:35"
       - run:
-          name: Deploy Staging to Heroku
+          name: Deploy Master to Heroku
           command: |
             git fetch
             heroku maintenance:on --app ah-myflix
