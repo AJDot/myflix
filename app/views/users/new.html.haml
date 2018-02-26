@@ -3,6 +3,10 @@
   :javascript
     var stripe = Stripe("#{ENV['STRIPE_PUBLISHABLE_KEY']}");
   = javascript_include_tag 'payments'
+  :javascript
+    $(function() {
+      $(document).tooltip();
+    });
 
 %section.register.container
   .row
@@ -18,7 +22,9 @@
         %fieldset.credit_card
           %span#card-errors.alert-danger
           .form-group
-            %label.col-sm-3(for="card-number") Credit Card Number
+            %label.col-sm-3(for="card-number" title="This sample application will not actually charge your credit card. Please use 4242 4242 4242 4242 to simulate an approved card. Use 4000 0000 0000 0002 to simulate a declined card.")
+              Credit Card Number
+              %i.material-icons info
             .col-sm-6
               #card-number.form-control
           .form-group

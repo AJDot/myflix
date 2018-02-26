@@ -2,7 +2,7 @@ $(function() {
   var elements = stripe.elements();
 
   // Create an instance of the card Element
-  var cardNumber = elements.create('cardNumber');
+  var cardNumber = elements.create('cardNumber', { placeholder: "Please see info before entering CC number."});
   var cardExpiry = elements.create('cardExpiry');
   var cardCvc = elements.create('cardCvc');
 
