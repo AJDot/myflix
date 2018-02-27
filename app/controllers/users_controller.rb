@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @reviews = ReviewDecorator.decorate_collection(@user.reviews)
   end
 
   def new_with_invitation_token
