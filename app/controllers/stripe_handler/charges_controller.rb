@@ -3,7 +3,10 @@ class StripeHandler::ChargesController < ApplicationController
 
   def create
     event = Stripe::Event.retrieve(params[:id])
-    ChargeSuccess.new(event: event).process
+    if event.type == 'charge.succeeded'
+      ChargeSuccess.new(event: event).process
+    end
+
     render nothing: true, status: 201
   rescue Stripe::APIConnectionError, Stripe::StripeError
     render nothing: true, status: 400
