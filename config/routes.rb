@@ -38,4 +38,8 @@ Myflix::Application.routes.draw do
   get 'expired_token', to: 'pages#expired_token'
 
   resources :invitations, only: [:new, :create]
+
+  namespace :stripe_handler do
+    resources :charges, only: [:create]
+  end
 end

@@ -13,8 +13,9 @@ class UserSignup
       )
 
       if customer.successful?
+        @user.customer_token = customer.customer_token
         subscription = StripeWrapper::Subscription.create(
-          customer: customer.response[:id],
+          customer: customer.customer_token,
           plan: 'base'
         )
         if subscription.successful?

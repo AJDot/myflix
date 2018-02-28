@@ -40,7 +40,6 @@ module StripeWrapper
           email: options[:user].email,
           source: options[:source]
         )
-        self.add_stripe_id_to_user(options[:user], response.id)
         new(response: response)
       rescue Stripe::CardError => e
         new(error_message: e.message)
@@ -51,11 +50,8 @@ module StripeWrapper
       response.present?
     end
 
-    private
-
-    def self.add_stripe_id_to_user(user, stripe_id)
-      user.stripe_id = stripe_id
-      user.save
+    def customer_token
+      response.id
     end
   end
 
