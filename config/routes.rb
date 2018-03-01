@@ -40,7 +40,5 @@ Myflix::Application.routes.draw do
 
   resources :invitations, only: [:new, :create]
 
-  namespace :stripe_handler do
-    resources :charges, only: [:create]
-  end
+  resources :stripe_event_handler, only: [:create]
 end

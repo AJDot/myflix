@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.stripe.com/v1/events/evt_1C0WXREB8VdfobgqqYDjFG3g
+    uri: https://api.stripe.com/v1/events/evt_1C0qrZEB8Vdfobgq0oMJOUSQ
     body:
       encoding: US-ASCII
       string: ''
@@ -30,11 +30,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 28 Feb 2018 21:17:58 GMT
+      - Thu, 01 Mar 2018 14:10:02 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2413'
+      - '2456'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -50,7 +50,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_goZUsYuC7i3HWB
+      - req_rmsOnsHeskzl3B
       Stripe-Version:
       - '2018-02-06'
       Strict-Transport-Security:
@@ -59,42 +59,42 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "evt_1C0WXREB8VdfobgqqYDjFG3g",
+          "id": "evt_1C0qrZEB8Vdfobgq0oMJOUSQ",
           "object": "event",
           "api_version": "2018-02-06",
-          "created": 1519830493,
+          "created": 1519908621,
           "data": {
             "object": {
-              "id": "ch_1C0WXQEB8VdfobgqEZBzQXe7",
+              "id": "ch_1C0qrZEB8Vdfobgq37imr69C",
               "object": "charge",
               "amount": 999,
               "amount_refunded": 0,
               "application": null,
               "application_fee": null,
-              "balance_transaction": "txn_1C0WXREB8VdfobgqGeeASm34",
-              "captured": true,
-              "created": 1519830492,
+              "balance_transaction": null,
+              "captured": false,
+              "created": 1519908621,
               "currency": "usd",
-              "customer": "cus_CPLDOcpgZ0fgQS",
-              "description": null,
+              "customer": "cus_CPR8WVXKrhhQE2",
+              "description": "failed payment",
               "destination": null,
               "dispute": null,
-              "failure_code": null,
-              "failure_message": null,
+              "failure_code": "card_declined",
+              "failure_message": "Your card was declined.",
               "fraud_details": {},
-              "invoice": "in_1C0WXQEB8VdfobgqGy2NfNy6",
+              "invoice": null,
               "livemode": false,
               "metadata": {},
               "on_behalf_of": null,
               "order": null,
               "outcome": {
-                "network_status": "approved_by_network",
-                "reason": null,
+                "network_status": "declined_by_network",
+                "reason": "generic_decline",
                 "risk_level": "normal",
-                "seller_message": "Payment complete.",
-                "type": "authorized"
+                "seller_message": "The bank did not return any further details with this decline.",
+                "type": "issuer_declined"
               },
-              "paid": true,
+              "paid": false,
               "receipt_email": null,
               "receipt_number": null,
               "refunded": false,
@@ -103,12 +103,12 @@ http_interactions:
                 "data": [],
                 "has_more": false,
                 "total_count": 0,
-                "url": "/v1/charges/ch_1C0WXQEB8VdfobgqEZBzQXe7/refunds"
+                "url": "/v1/charges/ch_1C0qrZEB8Vdfobgq37imr69C/refunds"
               },
               "review": null,
               "shipping": null,
               "source": {
-                "id": "card_1C0WXPEB8VdfobgqjCQ7WJsd",
+                "id": "card_1C0qqdEB8Vdfobgqj7VnOgov",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -120,32 +120,32 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CPLDOcpgZ0fgQS",
+                "customer": "cus_CPR8WVXKrhhQE2",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
                 "exp_month": 11,
-                "exp_year": 2019,
-                "fingerprint": "pel6e9vrF4SvsbpN",
+                "exp_year": 2033,
+                "fingerprint": "IUJBQB6wkybag5Sd",
                 "funding": "credit",
-                "last4": "4242",
+                "last4": "0341",
                 "metadata": {},
-                "name": "alexexample@example.com",
+                "name": null,
                 "tokenization_method": null
               },
               "source_transfer": null,
-              "statement_descriptor": null,
-              "status": "succeeded",
+              "statement_descriptor": "failed payment",
+              "status": "failed",
               "transfer_group": null
             }
           },
           "livemode": false,
           "pending_webhooks": 0,
           "request": {
-            "id": "req_Nds7EN1XnCgsqk",
+            "id": "req_53pE9Ltk0vq3zx",
             "idempotency_key": null
           },
-          "type": "charge.succeeded"
+          "type": "charge.failed"
         }
     http_version: 
-  recorded_at: Wed, 28 Feb 2018 21:17:58 GMT
+  recorded_at: Thu, 01 Mar 2018 14:10:02 GMT
 recorded_with: VCR 2.9.3

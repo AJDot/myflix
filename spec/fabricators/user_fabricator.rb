@@ -3,6 +3,7 @@ Fabricator(:user) do
   password 'password'
   full_name { Faker::Name.name.gsub("'", "") }
   admin false
+  active true
 end
 
 Fabricator(:admin, from: :user) do
