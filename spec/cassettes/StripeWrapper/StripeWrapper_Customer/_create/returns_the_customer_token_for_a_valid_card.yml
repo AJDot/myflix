@@ -1,0 +1,212 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: UTF-8
+      string: card[number]=4242424242424242&card[exp_month]=2&card[exp_year]=2019&card[cvc]=314
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.9.2
+      Authorization:
+      - Bearer sk_test_fiAG8z1KPD3ixkm7nEMDheTD
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.2.9 p480 (2017-12-15)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.4.0-116-generic (buildd@lgw01-amd64-021) (gcc version 5.4.0 20160609
+        (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC
+        2018","hostname":"BarkBark"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 28 Feb 2018 15:58:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '778'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_bJ3R5hZfqk0ZUb
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_1C0XK4EB8Vdfobgqzt0AQi6b",
+          "object": "token",
+          "card": {
+            "id": "card_1C0XK4EB8VdfobgqfpTVtMAG",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": "unchecked",
+            "dynamic_last4": null,
+            "exp_month": 2,
+            "exp_year": 2019,
+            "fingerprint": "pel6e9vrF4SvsbpN",
+            "funding": "credit",
+            "last4": "4242",
+            "metadata": {},
+            "name": null,
+            "tokenization_method": null
+          },
+          "client_ip": "71.120.8.74",
+          "created": 1519833508,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
+    http_version: 
+  recorded_at: Wed, 28 Feb 2018 15:58:28 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=darius%40waters.com&source=tok_1C0XK4EB8Vdfobgqzt0AQi6b
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.9.2
+      Authorization:
+      - Bearer sk_test_fiAG8z1KPD3ixkm7nEMDheTD
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.2.9 p480 (2017-12-15)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.4.0-116-generic (buildd@lgw01-amd64-021) (gcc version 5.4.0 20160609
+        (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC
+        2018","hostname":"BarkBark"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 28 Feb 2018 15:58:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1425'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_n5xqyLRDAEkWX5
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_CPM2tCSkJZqVWD",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1519833509,
+          "currency": null,
+          "default_source": "card_1C0XK4EB8VdfobgqfpTVtMAG",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "darius@waters.com",
+          "invoice_prefix": "8AA2865",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1C0XK4EB8VdfobgqfpTVtMAG",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_CPM2tCSkJZqVWD",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 2,
+                "exp_year": 2019,
+                "fingerprint": "pel6e9vrF4SvsbpN",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_CPM2tCSkJZqVWD/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_CPM2tCSkJZqVWD/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 28 Feb 2018 15:58:29 GMT
+recorded_with: VCR 2.9.3

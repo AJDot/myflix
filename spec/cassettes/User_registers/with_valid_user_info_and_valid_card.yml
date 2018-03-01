@@ -133,4 +133,248 @@ http_interactions:
         }
     http_version: 
   recorded_at: Fri, 23 Feb 2018 19:53:04 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=john%40example.com&source=tok_1C0FFiEB8VdfobgqXTBnD3lK
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.9.2
+      Authorization:
+      - Bearer sk_test_fiAG8z1KPD3ixkm7nEMDheTD
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.2.9 p480 (2017-12-15)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.4.0-116-generic (buildd@lgw01-amd64-021) (gcc version 5.4.0 20160609
+        (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC
+        2018","hostname":"BarkBark"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Feb 2018 20:40:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1442'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_akei107Skz9VQf
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_CP3MOcMxOlpz7d",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1519764046,
+          "currency": null,
+          "default_source": "card_1C0FFhEB8VdfobgqjaqYcqNP",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "john@example.com",
+          "invoice_prefix": "e3db5cc868",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1C0FFhEB8VdfobgqjaqYcqNP",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_CP3MOcMxOlpz7d",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 11,
+                "exp_year": 2021,
+                "fingerprint": "pel6e9vrF4SvsbpN",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "john@example.com",
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_CP3MOcMxOlpz7d/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_CP3MOcMxOlpz7d/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 27 Feb 2018 20:40:47 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/subscriptions
+    body:
+      encoding: UTF-8
+      string: customer=cus_CP3MOcMxOlpz7d&items[0][plan]=base
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.9.2
+      Authorization:
+      - Bearer sk_test_fiAG8z1KPD3ixkm7nEMDheTD
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.2.9 p480 (2017-12-15)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.4.0-116-generic (buildd@lgw01-amd64-021) (gcc version 5.4.0 20160609
+        (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC
+        2018","hostname":"BarkBark"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Feb 2018 20:40:48 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1689'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_wZcqlvn0U9BzQZ
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "sub_CP3MOZQjOPtemJ",
+          "object": "subscription",
+          "application_fee_percent": null,
+          "billing": "charge_automatically",
+          "billing_cycle_anchor": 1519764047,
+          "cancel_at_period_end": false,
+          "canceled_at": null,
+          "created": 1519764047,
+          "current_period_end": 1522183247,
+          "current_period_start": 1519764047,
+          "customer": "cus_CP3MOcMxOlpz7d",
+          "days_until_due": null,
+          "discount": null,
+          "ended_at": null,
+          "items": {
+            "object": "list",
+            "data": [
+              {
+                "id": "si_CP3MiXaUhxSEgv",
+                "object": "subscription_item",
+                "created": 1519764048,
+                "metadata": {},
+                "plan": {
+                  "id": "base",
+                  "object": "plan",
+                  "amount": 999,
+                  "created": 1519757801,
+                  "currency": "usd",
+                  "interval": "month",
+                  "interval_count": 1,
+                  "livemode": false,
+                  "metadata": {},
+                  "nickname": "base",
+                  "product": "prod_CP1fuCrwFVRqPh",
+                  "trial_period_days": null
+                },
+                "quantity": 1,
+                "subscription": "sub_CP3MOZQjOPtemJ"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/subscription_items?subscription=sub_CP3MOZQjOPtemJ"
+          },
+          "livemode": false,
+          "metadata": {},
+          "plan": {
+            "id": "base",
+            "object": "plan",
+            "amount": 999,
+            "created": 1519757801,
+            "currency": "usd",
+            "interval": "month",
+            "interval_count": 1,
+            "livemode": false,
+            "metadata": {},
+            "nickname": "base",
+            "product": "prod_CP1fuCrwFVRqPh",
+            "trial_period_days": null
+          },
+          "quantity": 1,
+          "start": 1519764047,
+          "status": "active",
+          "tax_percent": null,
+          "trial_end": null,
+          "trial_start": null
+        }
+    http_version: 
+  recorded_at: Tue, 27 Feb 2018 20:40:48 GMT
 recorded_with: VCR 2.9.3

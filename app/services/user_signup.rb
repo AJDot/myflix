@@ -7,20 +7,31 @@ class UserSignup
 
   def sign_up(stripe_token, invitation_token)
     if @user.valid?
-      charge = StripeWrapper::Charge.create(
-        :amount => 999,
-        :source => stripe_token,
-        :description => "Sign up charge for #{@user.email}"
+      customer = StripeWrapper::Customer.create(
+        user: @user,
+        source: stripe_token
       )
-      if charge.successful?
-        @user.save
-        handle_invitation(invitation_token)
-        AppMailer.delay.send_welcome_email(@user)
-        @status = :success
-        self
+
+      if customer.successful?
+        @user.customer_token = customer.customer_token
+        subscription = StripeWrapper::Subscription.create(
+          customer: customer.customer_token,
+          plan: 'base'
+        )
+        if subscription.successful?
+          @user.save
+          handle_invitation(invitation_token)
+          AppMailer.delay.send_welcome_email(@user)
+          @status = :success
+          self
+        else
+          @status = :failed
+          @error_message = subscription.error_message
+          self
+        end
       else
         @status = :failed
-        @error_message = charge.error_message
+        @error_message = customer.error_message
         self
       end
     else

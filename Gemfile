@@ -19,6 +19,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-aws'
 gem 'stripe'
+gem 'stripe_event'
 gem 'figaro'
 gem 'draper', '=2.0.0'
 
@@ -36,6 +37,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   gem 'rspec_junit_formatter'
+  gem 'ultrahook'
 end
 
 group :test do

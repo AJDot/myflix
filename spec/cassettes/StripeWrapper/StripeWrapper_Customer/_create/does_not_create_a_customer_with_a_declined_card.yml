@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/tokens
     body:
-      encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_1BymbIEB8VdfobgqG4y6n1K3&description=Sign+up+charge+for+john%40example.com
+      encoding: UTF-8
+      string: card[number]=4000000000000002&card[exp_month]=2&card[exp_year]=2019&card[cvc]=314
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.9.2
@@ -14,7 +14,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+      - '{"bindings_version":"3.9.2","lang":"ruby","lang_version":"2.2.9 p480 (2017-12-15)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
         version 4.4.0-116-generic (buildd@lgw01-amd64-021) (gcc version 5.4.0 20160609
         (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC
         2018","hostname":"BarkBark"}'
@@ -24,17 +24,17 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 402
-      message: Payment Required
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Date:
-      - Fri, 23 Feb 2018 19:53:01 GMT
+      - Tue, 27 Feb 2018 19:27:40 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '201'
+      - '778'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -50,29 +50,55 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_w8oAf7obu1I0GU
+      - req_OyzKpNsTdJmgpY
       Stripe-Version:
       - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |
         {
-          "error": {
-            "message": "Your card was declined.",
-            "type": "card_error",
-            "code": "card_declined",
-            "decline_code": "generic_decline",
-            "charge": "ch_1BymbJEB8VdfobgqRMV2urmE"
-          }
+          "id": "tok_1C0E6yEB8VdfobgqgvAKuLZ1",
+          "object": "token",
+          "card": {
+            "id": "card_1C0E6yEB8VdfobgqUIHVOuuk",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": "unchecked",
+            "dynamic_last4": null,
+            "exp_month": 2,
+            "exp_year": 2019,
+            "fingerprint": "CNEajmKXN42fqESX",
+            "funding": "credit",
+            "last4": "0002",
+            "metadata": {},
+            "name": null,
+            "tokenization_method": null
+          },
+          "client_ip": "71.120.8.74",
+          "created": 1519759660,
+          "livemode": false,
+          "type": "card",
+          "used": false
         }
     http_version: 
-  recorded_at: Fri, 23 Feb 2018 19:53:01 GMT
+  recorded_at: Tue, 27 Feb 2018 19:27:40 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=john%40example.com&source=tok_1C0FFpEB8VdfobgqIIhSxJnw
+      string: email=louie_stracke%40hettinger.name&source=tok_1C0E6yEB8VdfobgqgvAKuLZ1
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.9.2
@@ -97,7 +123,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 27 Feb 2018 20:40:53 GMT
+      - Tue, 27 Feb 2018 19:27:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -117,7 +143,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_hwl3DltMFsk5p9
+      - req_2suy8PbCK0XyOt
       Stripe-Version:
       - '2018-02-06'
     body:
@@ -133,5 +159,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Tue, 27 Feb 2018 20:40:53 GMT
+  recorded_at: Tue, 27 Feb 2018 19:27:41 GMT
 recorded_with: VCR 2.9.3
