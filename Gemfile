@@ -21,6 +21,7 @@ gem 'carrierwave-aws'
 gem 'stripe'
 gem 'figaro'
 gem 'draper', '=2.0.0'
+gem 'foreman'
 
 group :development do
   gem 'thin'
