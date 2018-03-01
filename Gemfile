@@ -22,6 +22,8 @@ gem 'stripe'
 gem 'figaro'
 gem 'draper', '=2.0.0'
 gem 'foreman'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development do
   gem 'thin'
