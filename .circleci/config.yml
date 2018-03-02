@@ -106,7 +106,12 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - test-job
+      - test-job:
+          filters:
+            branches:
+              only:
+                - master
+                - staging
       - production-deploy:
           requires:
             - test-job
