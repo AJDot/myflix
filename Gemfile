@@ -19,9 +19,11 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-aws'
 gem 'stripe'
-gem 'stripe_event'
 gem 'figaro'
 gem 'draper', '=2.0.0'
+gem 'foreman'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development do
   gem 'thin'
