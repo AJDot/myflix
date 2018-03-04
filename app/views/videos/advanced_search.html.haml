@@ -31,9 +31,10 @@
       %article.video.row
         .video_data
           %figure.col-sm-2
-            %img(src="#{video.small_cover_url}" alt="#{video.title}")
+            = link_to video_path(video) do
+              %img(src="#{video.small_cover_url}" alt="#{video.title}")
           .video_body.col-sm-10
             %header
               %h3
-                = video.title
+                = link_to video.title, video_path(video)
             %p.video_description= video.description
