@@ -23,7 +23,11 @@ class Video < ActiveRecord::Base
   end
 
   def rating
-    reviews.average(:rating).round(1) if reviews.average(:rating)
+    if reviews.average(:rating)
+      reviews.average(:rating).round(1)
+    else
+      0
+    end
   end
 
   def self.search(query, options={})
