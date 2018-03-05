@@ -4,8 +4,17 @@ class Video < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   # keeps dev and test environment separate - just like we do for databases
   index_name ["myflix", Rails.env].join('_')
-  unless self.__elasticsearch__.index_exists?
-    self.__elasticsearch__.create_index!
+
+  after_commit on: [:create] do
+    __elasticsearch__.index_document if self.published?
+  end
+
+  after_commit on: [:update] do
+    __elasticsearch__.update_document if self.published?
+  end
+
+  after_commit on: [:destroy] do
+    __elasticsearch__.delete_document if self.published?
   end
 
   belongs_to :category
@@ -23,11 +32,7 @@ class Video < ActiveRecord::Base
   end
 
   def rating
-    if reviews.average(:rating)
-      reviews.average(:rating).round(1)
-    else
-      0
-    end
+    reviews.average(:rating).round(1) if reviews.average(:rating)
   end
 
   def self.search(query, options={})
